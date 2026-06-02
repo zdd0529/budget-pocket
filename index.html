@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#f7f5ef" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="口袋账本" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <title>口袋账本</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">PERSONAL LEDGER</p>
+          <h1>口袋账本</h1>
+        </div>
+        <button class="icon-button" id="settingsButton" aria-label="打开设置">设置</button>
+      </header>
+
+      <section class="hero-card">
+        <div class="hero-topline">
+          <span id="currentMonthLabel">本月可用</span>
+          <span class="status-pill" id="budgetStatus">预算充足</span>
+        </div>
+        <p class="hero-amount" id="remainingAmount">¥0.00</p>
+        <div class="hero-breakdown">
+          <div>
+            <span>月度收入</span>
+            <strong id="incomeAmount">¥0.00</strong>
+          </div>
+          <div>
+            <span>固定支出</span>
+            <strong id="fixedTotal">¥0.00</strong>
+          </div>
+          <div>
+            <span>日常支出</span>
+            <strong id="dailyTotal">¥0.00</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="card credit-card-card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">CREDIT CARD</p>
+            <h2>信用卡还款进度</h2>
+          </div>
+          <strong id="creditProgressText">0%</strong>
+        </div>
+        <div class="progress-track" aria-label="信用卡还款进度">
+          <div class="progress-bar" id="creditProgressBar"></div>
+        </div>
+        <div class="credit-footer">
+          <span>已还 <strong id="creditPaid">¥0.00</strong></span>
+          <span>剩余 <strong id="creditRemaining">¥0.00</strong></span>
+        </div>
+      </section>
+
+      <section class="card entry-card">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">QUICK ADD</p>
+            <h2>记一笔支出</h2>
+          </div>
+        </div>
+        <form id="expenseForm">
+          <label class="amount-field">
+            <span>金额</span>
+            <div><b>¥</b><input id="expenseAmount" name="amount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="0.00" required /></div>
+          </label>
+          <div class="form-grid">
+            <label>
+              <span>分类</span>
+              <select id="expenseCategory" name="category">
+                <option>餐饮</option>
+                <option>交通</option>
+                <option>购物</option>
+                <option>生活</option>
+                <option>娱乐</option>
+                <option>医疗</option>
+                <option>其他</option>
+              </select>
+            </label>
+            <label>
+              <span>日期</span>
+              <input id="expenseDate" name="date" type="date" required />
+            </label>
+          </div>
+          <label>
+            <span>备注 <i>选填</i></span>
+            <input id="expenseNote" name="note" type="text" maxlength="40" placeholder="例如：午餐" />
+          </label>
+          <button class="primary-button" type="submit">记入账本</button>
+        </form>
+      </section>
+
+      <section class="records-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">THIS MONTH</p>
+            <h2>本月明细</h2>
+          </div>
+          <span id="recordCount">0 笔</span>
+        </div>
+        <div class="empty-state" id="emptyState">
+          <p>本月还没有支出</p>
+          <span>从上面记下第一笔吧</span>
+        </div>
+        <div class="record-list" id="recordList"></div>
+      </section>
+    </main>
+
+    <div class="sheet-backdrop" id="sheetBackdrop" hidden></div>
+    <aside class="settings-sheet" id="settingsSheet" aria-hidden="true">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <div>
+          <p class="eyebrow">SETTINGS</p>
+          <h2>每月计划</h2>
+        </div>
+        <button class="icon-button" id="closeSettings" aria-label="关闭设置">完成</button>
+      </div>
+      <form id="settingsForm">
+        <label class="settings-row prominent">
+          <span>每月收入 / 可用预算</span>
+          <div><b>¥</b><input name="income" type="number" inputmode="decimal" min="0" step="0.01" /></div>
+        </label>
+
+        <h3>每月固定支出</h3>
+        <div class="settings-group">
+          <label class="settings-row">
+            <span>信用卡</span>
+            <div><b>¥</b><input name="creditCard" type="number" inputmode="decimal" min="0" step="0.01" /></div>
+          </label>
+          <label class="settings-row">
+            <span>车贷</span>
+            <div><b>¥</b><input name="carLoan" type="number" inputmode="decimal" min="0" step="0.01" /></div>
+          </label>
+          <label class="settings-row">
+            <span>房租</span>
+            <div><b>¥</b><input name="rent" type="number" inputmode="decimal" min="0" step="0.01" /></div>
+          </label>
+          <label class="settings-row">
+            <span>停车费</span>
+            <div><b>¥</b><input name="parking" type="number" inputmode="decimal" min="0" step="0.01" /></div>
+          </label>
+        </div>
+
+        <h3>信用卡债务</h3>
+        <div class="settings-group">
+          <label class="settings-row">
+            <span>债务总额</span>
+            <div><b>¥</b><input name="creditDebt" type="number" inputmode="decimal" min="0" step="0.01" /></div>
+          </label>
+          <label class="settings-row">
+            <span>累计已还</span>
+            <div><b>¥</b><input name="creditPaid" type="number" inputmode="decimal" min="0" step="0.01" /></div>
+          </label>
+        </div>
+        <p class="settings-tip">所有数据只保存在当前设备的浏览器中。</p>
+        <button class="primary-button" type="submit">保存计划</button>
+      </form>
+    </aside>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
