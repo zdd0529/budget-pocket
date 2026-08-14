@@ -1,0 +1,24 @@
+// !$*UTF8*$!
+{
+ archiveVersion = 1;
+ classes = {};
+ objectVersion = 77;
+ objects = {
+  A1 /* Project object */ = {isa = PBXProject; attributes = {BuildIndependentTargetsInParallel = 1; LastSwiftUpdateCheck = 1600; LastUpgradeCheck = 1600;}; buildConfigurationList = C1; compatibilityVersion = "Xcode 16.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en, Base); mainGroup = G1; productRefGroup = G2; projectDirPath = ""; projectRoot = ""; targets = (T1);};
+  G1 = {isa = PBXGroup; children = (S1, G2); sourceTree = "<group>";};
+  G2 = {isa = PBXGroup; children = (P1); name = Products; sourceTree = "<group>";};
+  S1 /* SystemMonitor */ = {isa = PBXFileSystemSynchronizedRootGroup; path = SystemMonitor; sourceTree = "<group>";};
+  P1 /* SystemMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SystemMonitor.app; sourceTree = BUILT_PRODUCTS_DIR;};
+  T1 /* SystemMonitor */ = {isa = PBXNativeTarget; buildConfigurationList = C2; buildPhases = (B1, B2, B3); buildRules = (); dependencies = (); fileSystemSynchronizedGroups = (S1); name = SystemMonitor; packageProductDependencies = (); productName = SystemMonitor; productReference = P1; productType = "com.apple.product-type.application";};
+  B1 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0;};
+  B2 = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0;};
+  B3 = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0;};
+  C1 = {isa = XCConfigurationList; buildConfigurations = (D1, R1); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release;};
+  C2 = {isa = XCConfigurationList; buildConfigurations = (D2, R2); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release;};
+  D1 = {isa = XCBuildConfiguration; buildSettings = {MACOSX_DEPLOYMENT_TARGET = 14.0; SDKROOT = macosx;}; name = Debug;};
+  R1 = {isa = XCBuildConfiguration; buildSettings = {MACOSX_DEPLOYMENT_TARGET = 14.0; SDKROOT = macosx;}; name = Release;};
+  D2 = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; COMBINE_HIDPI_IMAGES = YES; CURRENT_PROJECT_VERSION = 1; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = SystemMonitor/Info.plist; MACOSX_DEPLOYMENT_TARGET = 14.0; MARKETING_VERSION = 1.0; PRODUCT_BUNDLE_IDENTIFIER = com.example.SystemMonitor; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_VERSION = 5.0;}; name = Debug;};
+  R2 = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; COMBINE_HIDPI_IMAGES = YES; CURRENT_PROJECT_VERSION = 1; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = SystemMonitor/Info.plist; MACOSX_DEPLOYMENT_TARGET = 14.0; MARKETING_VERSION = 1.0; PRODUCT_BUNDLE_IDENTIFIER = com.example.SystemMonitor; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_COMPILATION_MODE = wholemodule; SWIFT_VERSION = 5.0;}; name = Release;};
+ };
+ rootObject = A1;
+}
